@@ -1,30 +1,34 @@
 import { useState } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL;
-export default function NewRaffle() {
+export default function NewRaffle({ handleRaffleChanges }) {
     const [raffleForm, setRaffleForm] = useState({ name: '', secret_token: '' })
 
     const handleChange = (e) => {
         setRaffleForm({ ...raffleForm, [e.target.id]: e.target.value });
     };
 
-    const handleSubmit = () => {
-        createNewRaffle()
-    }
-
-    async function createNewRaffle() {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            const createRaffle = await fetch(`${API_URL}/raffles`, {
+            const response = await fetch(`${API_URL}/raffles`, {
                 method: "POST",
                 body: JSON.stringify(raffleForm),
                 headers: {
                     "Content-Type": "application/json",
                 },
             });
+            const newRaffle = await response.json()
+            handleRaffleChanges(newRaffle.data)
+
+            setRaffleForm({ name: '', secret_token: '' });
         } catch (error) {
             console.log(error.message)
         }
+
     }
+
+
     return (
         <div>
             <form onSubmit={handleSubmit}>

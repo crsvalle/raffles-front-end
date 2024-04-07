@@ -56,13 +56,17 @@ function App() {
       );
     }
   };
+
+  const handleRaffleChanges = (newRaffle) => {
+  setRaffles([...raffles, newRaffle]);
+};
   return (
     <div>
       <Router>
         <Routes>
           <Route path='/' element={
             <>
-              <NewRaffle />
+              <NewRaffle handleRaffleChanges={handleRaffleChanges}/>
               <SearchBar filterText={filterText} onFilterTextChange={setFilterText} />
               {renderData()}
             </>}
