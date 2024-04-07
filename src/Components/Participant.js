@@ -6,6 +6,7 @@ export default function Participant({ participant }) {
                 <h4>{participant.first_name} {participant.last_name}</h4>
                 <p>{participant.email}</p>
                 <p># {participant.id}</p>
+                <p>{participant.phone}</p>
             </div>
         </div>
     )

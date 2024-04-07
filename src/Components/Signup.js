@@ -1,7 +1,7 @@
 import { useState } from "react";
 const API_URL = process.env.REACT_APP_API_URL;
 
-export default function Signup({ id }) {
+export default function Signup({ id, participants, setParticipants }) {
     const [userForm, setUserForm] = useState({
         first_name: '',
         last_name: '',
@@ -24,6 +24,7 @@ export default function Signup({ id }) {
                     "Content-Type": "application/json",
                 },
             });
+            const newParticipant = await response.json()
             if (response.ok) {
                 setUserForm({
                     first_name: '',
@@ -31,10 +32,10 @@ export default function Signup({ id }) {
                     email: '',
                     phone: ''
                 });
+                setParticipants([...participants, newParticipant.data ] )
                 setMessage("Sign up succesful!")
             }else{
-                const error = await response.json()
-                setMessage(error.error)
+                setMessage(newParticipant.error)
             }
         } catch (error) {
             console.log("error", error.message)

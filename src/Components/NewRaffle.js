@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL;
+
 export default function NewRaffle({ handleRaffleChanges }) {
     const [raffleForm, setRaffleForm] = useState({ name: '', secret_token: '' })
     const [error, setError] = useState(null);

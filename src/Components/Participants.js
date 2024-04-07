@@ -3,8 +3,7 @@ import Participant from "./Participant";
 import SearchBar from "./Searchbar";
 const API_URL = process.env.REACT_APP_API_URL;
 
-export default function Participants({ id }) {
-    const [participants, setParticipants] = useState([]);
+export default function Participants({ id, participants, setParticipants }) {
     const [loading, setLoading] = useState(true);
     const [filterText, setFilterText] = useState("");
 
