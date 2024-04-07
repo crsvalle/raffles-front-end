@@ -48,7 +48,7 @@ function App() {
       return <p>No results matching: "{filterText}"</p>;
     } else {
       return (
-          <div className="studentList">
+          <div className="raffleList">
             {filteredRaffles.map((raffle) => (
               <Raffles key={raffle.id} raffle={raffle} />
             ))}
@@ -61,7 +61,7 @@ function App() {
     setRaffles([...raffles, newRaffle]);
   };
   return (
-    <div>
+    <div className='App'>
       <Router>
         <Routes>
           <Route path='/' element={

@@ -21,7 +21,7 @@ export default function NewRaffle({ handleRaffleChanges }) {
             });
             const newRaffle = await response.json()
             if (!response.ok) {
-                setError(newRaffle.message)
+                throw new Error(`Error! status: ${response.status}`);
             }
             handleRaffleChanges(newRaffle.data)
             setError(null);

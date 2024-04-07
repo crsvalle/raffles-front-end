@@ -1,0 +1,16 @@
+.App {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.profileIcon {
+    height: 150px;
+    width: 150px;
+    margin-right: 10px;
+}
+
+.participantCard {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
