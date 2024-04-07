@@ -1,25 +1,77 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from "react";
 import './App.css';
 
+import Raffle from './Pages/Raffle';
+import Raffles from './Components/Raffles';
+import SearchBar from './Components/Searchbar';
+import NewRaffle from './Components/NewRaffle';
+
+
+const API_URL = process.env.REACT_APP_API_URL;
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [raffles, setRaffles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filterText, setFilterText] = useState("");
+
+  async function fetchData() {
+    try {
+      const response = await fetch(`${API_URL}/raffles`);
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setRaffles(data.data);
+    } catch (error) {
+      console.log("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const filteredRaffles = raffles.filter((raffle) =>
+    `${raffle.name}`
+      .toLowerCase()
+      .includes(filterText.toLowerCase())
   );
+
+
+  const renderData = () => {
+    if (loading) {
+      return <p>Loading...</p>;
+    } else if (filteredRaffles.length === 0) {
+      return <p>No results matching: "{filterText}"</p>;
+    } else {
+      return (
+        <div className="studentList">
+          {filteredRaffles.map((raffle) => (
+            <Raffles key={raffle.id} raffle={raffle} />
+          ))}
+        </div>
+      );
+    }
+  };
+  return (
+    <div>
+      <Router>
+        <Routes>
+          <Route path='/' element={
+            <>
+              <NewRaffle />
+              <SearchBar filterText={filterText} onFilterTextChange={setFilterText} />
+              {renderData()}
+            </>}
+            />
+            <Route path='/raffles/:id' element={<Raffle />} />
+        </Routes>
+      </Router>
+    </div>
+  )
 }
 
 export default App;
