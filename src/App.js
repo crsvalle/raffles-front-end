@@ -48,30 +48,31 @@ function App() {
       return <p>No results matching: "{filterText}"</p>;
     } else {
       return (
-        <div className="studentList">
-          {filteredRaffles.map((raffle) => (
-            <Raffles key={raffle.id} raffle={raffle} />
-          ))}
-        </div>
+          <div className="studentList">
+            {filteredRaffles.map((raffle) => (
+              <Raffles key={raffle.id} raffle={raffle} />
+            ))}
+          </div>
       );
     }
   };
 
   const handleRaffleChanges = (newRaffle) => {
-  setRaffles([...raffles, newRaffle]);
-};
+    setRaffles([...raffles, newRaffle]);
+  };
   return (
     <div>
       <Router>
         <Routes>
           <Route path='/' element={
             <>
-              <NewRaffle handleRaffleChanges={handleRaffleChanges}/>
+              <NewRaffle handleRaffleChanges={handleRaffleChanges} />
+              <h2>All Raffles</h2>
               <SearchBar filterText={filterText} onFilterTextChange={setFilterText} />
               {renderData()}
             </>}
-            />
-            <Route path='/raffles/:id' element={<Raffle />} />
+          />
+          <Route path='/raffles/:id' element={<Raffle />} />
         </Routes>
       </Router>
     </div>

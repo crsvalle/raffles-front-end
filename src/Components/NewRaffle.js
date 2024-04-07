@@ -3,6 +3,7 @@ import { useState } from "react";
 const API_URL = process.env.REACT_APP_API_URL;
 export default function NewRaffle({ handleRaffleChanges }) {
     const [raffleForm, setRaffleForm] = useState({ name: '', secret_token: '' })
+    const [error, setError] = useState(null);
 
     const handleChange = (e) => {
         setRaffleForm({ ...raffleForm, [e.target.id]: e.target.value });
@@ -19,18 +20,22 @@ export default function NewRaffle({ handleRaffleChanges }) {
                 },
             });
             const newRaffle = await response.json()
+            if (!response.ok) {
+                setError(newRaffle.message)
+            }
             handleRaffleChanges(newRaffle.data)
-
+            setError(null);
             setRaffleForm({ name: '', secret_token: '' });
         } catch (error) {
-            console.log(error.message)
+            console.log("error", error.message)
         }
 
     }
 
-
     return (
         <div>
+            <h2>Create a Raffle!</h2>
+            {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <label>Raffle Name: </label>
                 <input
