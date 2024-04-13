@@ -48,11 +48,11 @@ function App() {
       return <p>No results matching: "{filterText}"</p>;
     } else {
       return (
-          <div className="raffleList">
-            {filteredRaffles.map((raffle) => (
-              <Raffles key={raffle.id} raffle={raffle} />
-            ))}
-          </div>
+        <div className="raffleList">
+          {filteredRaffles.map((raffle) => (
+            <Raffles key={raffle.id} raffle={raffle} />
+          ))}
+        </div>
       );
     }
   };

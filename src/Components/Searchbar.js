@@ -1,11 +1,11 @@
 export default function SearchBar({ filterText, onFilterTextChange }) {
     return (
-      <form className="searchBar">
+      <form className="searchBarContainer">
         <input
-          className="input_box"
+          className="input_box searchInput"
           type="text"
           value={filterText}
-          placeholder="Search..."
+          placeholder="Search for a raffle..."
           onChange={(e) => onFilterTextChange(e.target.value)}
         />
       </form>

@@ -21,3 +21,18 @@
     align-items: center;
     justify-content: center;
 }
+
+
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 300px; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  font-size: 16px; 
+}

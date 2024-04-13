@@ -6,7 +6,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 export default function Participants({ id, participants, setParticipants }) {
     const [loading, setLoading] = useState(true);
     const [filterText, setFilterText] = useState("");
-
     async function fetchData() {
         try {
             const response = await fetch(`${API_URL}/raffles/${id}/participants`);

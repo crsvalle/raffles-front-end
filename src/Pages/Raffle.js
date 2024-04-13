@@ -34,13 +34,13 @@ export default function Raffle() {
     <div>
       <Navbar setActiveComponent={setActiveComponent} />
 
-      {activeComponent === 'signup' && <Signup id={id} participants={participants} setParticipants={setParticipants} />}
-      {activeComponent === 'participants' && <Participants id={id} participants={participants} setParticipants={setParticipants} />}
+      {activeComponent === 'signup' && <Signup id={id.id} participants={participants} setParticipants={setParticipants} />}
+      {activeComponent === 'participants' && <Participants id={id.id} participants={participants} setParticipants={setParticipants} />}
       {(activeComponent === 'winner' && winner) && (
         <Winner winner={winner} />
       )}
       {(activeComponent === 'winner' && !winner) && (
-        <EndRaffle id={id} />
+        <EndRaffle id={id.id} />
       )}
     </div>
   )
