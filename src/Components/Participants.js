@@ -35,8 +35,10 @@ export default function Participants({ id, participants, setParticipants }) {
     const renderData = () => {
         if (loading) {
             return <p>Loading...</p>;
+        } else if (participants.length === 0) {
+            return <p>No participants in this raffle yet.</p>;
         } else if (filteredParticipants.length === 0) {
-            return <p>No User matching: "{filterText}"</p>;
+            return <p>No user matching: "{filterText}"</p>;
         } else {
             return (
                 <div className="participantList">
