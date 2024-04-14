@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { TextField, Button, Typography, Grid } from '@mui/material';
-
+import "./NewRaffle.css"
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -36,25 +35,33 @@ export default function NewRaffle({ handleRaffleChanges }) {
     }
 
     return (
-        <div>
-            <h2>Create a Raffle!</h2>
+        <div className="newBox">
+            <h3>Create a Raffle</h3>
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
-                <label>Raffle Name: </label>
+                <label htmlFor="name"><strong className="labelText">Raffle Name*:</strong></label>
                 <input
                     type="text"
                     id="name"
+                    className="input_box"
                     value={raffleForm.name}
                     onChange={handleChange}
-                    required />
-                <label>Secret Token </label>
+                    placeholder="Name..."
+                    required
+                />
+
+                <label htmlFor="secret_token"><strong className="labelText">Secret Token*:</strong></label>
                 <input
-                    type="text"
-                    id='secret_token'
+                    type="password"
+                    id="secret_token"
+                    className="input_box"
                     value={raffleForm.secret_token}
                     onChange={handleChange}
-                    required />
-                <button>Create</button>
+                    placeholder="Token..."
+                    required
+                />
+
+                <button type="submit" className="submit_button">Create</button>
             </form>
         </div>
     )

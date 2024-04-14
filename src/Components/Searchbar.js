@@ -5,7 +5,7 @@ export default function SearchBar({ filterText, onFilterTextChange }) {
           className="input_box searchInput"
           type="text"
           value={filterText}
-          placeholder="Search for a raffle..."
+          placeholder="Search..."
           onChange={(e) => onFilterTextChange(e.target.value)}
         />
       </form>

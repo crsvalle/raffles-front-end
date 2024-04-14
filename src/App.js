@@ -67,7 +67,7 @@ function App() {
           <Route path='/' element={
             <>
               <NewRaffle handleRaffleChanges={handleRaffleChanges} />
-              <h2>All Raffles</h2>
+              <h3 className='raffleH3'>All Raffles</h3>
               <SearchBar filterText={filterText} onFilterTextChange={setFilterText} />
               {renderData()}
             </>}
