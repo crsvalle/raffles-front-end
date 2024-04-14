@@ -24,12 +24,12 @@ export default function Participants({ id, participants, setParticipants }) {
     useEffect(() => {
         fetchData();
     }, []);
+    
     const filteredParticipants = participants.filter((participant) =>
         `${participant.first_name} ${participant.last_name}`
             .toLowerCase()
             .includes(filterText.toLowerCase())
     );
-
 
     const renderData = () => {
         if (loading) {
