@@ -44,8 +44,8 @@ export default function Signup({ id, participants, setParticipants }) {
 
     };
     return (
-        <div class="form-container">
-        {message && <p class="message">{message}</p>}
+        <div className="form-container">
+        {message && <p className="message">{message}</p>}
         <form onSubmit={handleSubmit} className="user-form">
             <div className="input-group">
                 <div className="input-wrapper">

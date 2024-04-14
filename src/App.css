@@ -15,6 +15,9 @@
     align-self: center;
 }
 
+.participantList{
+    margin-top: -15px;
+}
 .participantCard {
     display: flex;
     border: 1px solid #ccc;

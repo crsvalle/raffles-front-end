@@ -34,7 +34,7 @@ export default function Raffle() {
   
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, []);
 
   return (
     <div>
