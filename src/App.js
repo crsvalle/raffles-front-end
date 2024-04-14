@@ -23,7 +23,8 @@ function App() {
         throw new Error(`Error! status: ${response.status}`);
       }
       const data = await response.json();
-      setRaffles(data.data);
+      const sortedRaffles = data.data.sort((a, b) => b.id - a.id);
+      setRaffles(sortedRaffles);
     } catch (error) {
       console.log("Error:", error);
     } finally {
@@ -58,7 +59,7 @@ function App() {
   };
 
   const handleRaffleChanges = (newRaffle) => {
-    setRaffles([...raffles, newRaffle]);
+    setRaffles([newRaffle, ...raffles]);
   };
   return (
     <div className='App'>

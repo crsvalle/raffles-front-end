@@ -26,7 +26,7 @@ export default function NewRaffle({ handleRaffleChanges }) {
                 throw new Error(`Error! status: ${response.status}`);
             }
             handleRaffleChanges(newRaffle.data)
-            setError(null);
+            setError("Successful!");
             setRaffleForm({ name: '', secret_token: '' });
         } catch (error) {
             console.log("error", error.message)
