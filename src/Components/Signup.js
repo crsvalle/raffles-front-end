@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './Signup.css'
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Signup({ id, participants, setParticipants }) {
@@ -32,9 +33,9 @@ export default function Signup({ id, participants, setParticipants }) {
                     email: '',
                     phone: ''
                 });
-                setParticipants([...participants, newParticipant.data ] )
+                setParticipants([...participants, newParticipant.data])
                 setMessage("Sign up succesful!")
-            }else{
+            } else {
                 setMessage(newParticipant.error)
             }
         } catch (error) {
@@ -43,42 +44,60 @@ export default function Signup({ id, participants, setParticipants }) {
 
     };
     return (
-        <div>
-            {message && <p>{message }</p>}
-            <form onSubmit={handleSubmit}>
-                <label>First Name: *</label>
+        <div class="form-container">
+        {message && <p class="message">{message}</p>}
+        <form onSubmit={handleSubmit} className="user-form">
+            <div className="input-group">
+                <div className="input-wrapper">
+                    <label for="first_name" className="label">First Name</label>
+                    <input
+                        type="text"
+                        id="first_name"
+                            value={userForm.first_name}
+                        onChange={handleChange}
+                        placeholder="First Name"
+                        className="input"
+                        required
+                    />
+                </div>
+                <div className="input-wrapper">
+                    <label for="last_name" className="label">Last Name</label>
+                    <input
+                        type="text"
+                        id="last_name"
+                        value={userForm.last_name}
+                        onChange={handleChange}
+                        placeholder="Last Name"
+                        className="input"
+                        required
+                    />
+                </div>
+            </div>
+            <div className="input-wrapper">
+                <label for="email" className="label">Email</label>
                 <input
                     type="text"
-                    id="first_name"
-                    value={userForm.first_name}
-                    onChange={handleChange}
-                    placeholder="First Name"
-                    required />
-                <label>Last Name: </label>
-                <input
-                    type="text"
-                    id='last_name'
-                    value={userForm.last_name}
-                    onChange={handleChange}
-                    placeholder="Last Name"
-                    required />
-                <label>Email:</label>
-                <input
-                    type="text"
-                    id='email'
+                    id="email"
                     value={userForm.email}
                     onChange={handleChange}
                     placeholder="johndoe@example.com"
-                    required />
-                <label>Phone:</label>
+                    className="input"
+                    required
+                />
+            </div>
+            <div className="input-wrapper">
+                <label for="phone" className="label">Phone</label>
                 <input
                     type="tel"
-                    id='phone'
+                    id="phone"
                     value={userForm.phone}
                     onChange={handleChange}
-                    placeholder="Phone" />
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+                    placeholder="Phone"
+                    className="input"
+                />
+            </div>
+            <button type="submit" className="submit-button">Submit</button>
+        </form>
+    </div>
     )
 }

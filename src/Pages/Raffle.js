@@ -11,7 +11,9 @@ export default function Raffle() {
   let id = useParams();
   const [participants, setParticipants] = useState([]);
   const [winner, setWinner] = useState(null);
-  const [activeComponent, setActiveComponent] = useState('signup')
+  const [activeComponent, setActiveComponent] = useState(() => {
+    return localStorage.getItem('activeComponent') || 'signup';
+  });
 
   async function fetchData() {
     try {
@@ -26,6 +28,10 @@ export default function Raffle() {
     }
   }
 
+  useEffect(() => {
+    localStorage.setItem('activeComponent', activeComponent);
+  }, [activeComponent]);
+  
   useEffect(() => {
     fetchData();
   }, [id]);
@@ -45,4 +51,3 @@ export default function Raffle() {
     </div>
   )
 }
-  
