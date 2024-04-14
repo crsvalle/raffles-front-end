@@ -9,15 +9,17 @@
   }
 
 .profileIcon {
-    height: 150px;
-    width: 150px;
-    margin-right: 10px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    align-self: center;
 }
 
 .participantCard {
     display: flex;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 1px;
+    margin: 5px;
 }
 
 .winnerCard{
