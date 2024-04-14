@@ -39,14 +39,20 @@ export default function EndRaffle({id}) {
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <input
-                    type="text"
+                    type="password"
                     id="secretToken"
+                    className="input_box"
                     value={secretToken}
                     placeholder="Secret token."
                     onChange={handleChange}
                     required />
-                <button>Pick a Winner</button>
+                <button className="submit_button">Pick a Winner</button>
             </form>
+
+            <div className="container">
+                <h5>Secret Needed!</h5>
+                <p>The secret token used when creating the raffle must be provided.</p>
+            </div>
         </div>
     )
 }

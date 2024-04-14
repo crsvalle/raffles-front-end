@@ -10,19 +10,19 @@ const API_URL = process.env.REACT_APP_API_URL;
 export default function Raffle() {
   let id = useParams();
   const [participants, setParticipants] = useState([]);
-  const [winner, setWinner] = useState(null);
+  const [raffle, setRaffle] = useState(null);
   const [activeComponent, setActiveComponent] = useState(() => {
     return localStorage.getItem('activeComponent') || 'signup';
   });
 
   async function fetchData() {
     try {
-      const response = await fetch(`${API_URL}/raffles/${id.id}/winner`);
+      const response = await fetch(`${API_URL}/raffles/${id.id}`);
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
       }
       const data = await response.json();
-      setWinner(data.data);
+      setRaffle(data.data);
     } catch (error) {
       console.log("Error:", error);
     }
@@ -36,16 +36,18 @@ export default function Raffle() {
     fetchData();
   }, []);
 
+
   return (
     <div>
+      <h1>{raffle?.name}</h1>
       <Navbar setActiveComponent={setActiveComponent} />
 
       {activeComponent === 'signup' && <Signup id={id.id} participants={participants} setParticipants={setParticipants} />}
       {activeComponent === 'participants' && <Participants id={id.id} participants={participants} setParticipants={setParticipants} />}
-      {(activeComponent === 'winner' && winner) && (
-        <Winner winner={winner} />
+      {(activeComponent === 'winner' && raffle !== null && raffle.winner_id !== null) && (
+        <Winner id={id.id} />
       )}
-      {(activeComponent === 'winner' && !winner) && (
+      {(activeComponent === 'winner' && (raffle === null || raffle.winner_id === null)) && (
         <EndRaffle id={id.id} />
       )}
     </div>

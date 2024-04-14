@@ -46,3 +46,29 @@
   border-radius: 5px; 
   font-size: 16px; 
 }
+
+
+.container {
+    border: 1px solid #ccc;
+    padding: 10px; 
+    margin-bottom: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.container h5 {
+    margin-top: 0; 
+    margin-bottom: 5px; 
+}
+
+.container p {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+h1{
+    text-align: center;
+}
